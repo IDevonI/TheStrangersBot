@@ -33,15 +33,15 @@ public class Creator extends ListenerAdapter {
                         String z = "";
                         EmbedBuilder eb = new EmbedBuilder();
                         if (command.length == 1) {
-                            eb.setTitle("!embed>[c:>a:>t:>n:>z:>u:>U:>s:]");
-                            eb.addField("", "c-kolor(ang), np. c:red\n" +
-                                    "a-autor, np. a:Jan\n" +
-                                    "t-tytuł, np. t:Regulamin\n" +
-                                    "n-nagłówek, np. n:Punkt pierwszy\n" +
+                            eb.setTitle("!embed>[c;>a;>t;>n;>z;>u;>U;>s;]");
+                            eb.addField("", "c-kolor(ang), np. c;red\n" +
+                                    "a-autor, np. a;Jan\n" +
+                                    "t-tytuł, np. t;Regulamin\n" +
+                                    "n-nagłówek, np. n;Punkt pierwszy\n" +
                                     "z-zawartosc tekstowa\n" +
                                     "u-adres url miniatury\n" +
                                     "U-adres url obrazka\n" +
-                                    "s-stopka, np.Made by Jan", false);
+                                    "s-stopka, np. s;Made by Jan", false);
                             eb.addField("Jeśli jakaś opcja Cię nie interesuje ,po prostu ją pomiń", "Dostępne kolory:\n" +
                                     "yellow\n" +
                                     "orange\n" +
@@ -63,7 +63,7 @@ public class Creator extends ListenerAdapter {
                                     "dwie_podłogi_gwiazdka __*tekst*__ gwiazdka_dwie_podłogi - podkreślona kursywa", false);
                         } else {
                             for (int i = 1; i < command.length && err == 0; i++) {
-                                String[] subCommand = command[i].split(":");
+                                String[] subCommand = command[i].split(";");
                                 if (subCommand[0].equals("c")) {
                                     if (subCommand[1].equals("yellow")) {
                                         eb.setColor(Color.YELLOW);
