@@ -15,7 +15,7 @@ public class Creator extends ListenerAdapter {
         if(!event.getAuthor().isBot())
         {
             if(event.getMessage().getContentRaw().charAt(0)=='!') {
-                String[] command = event.getMessage().getContentRaw().split(">");
+                String[] command = event.getMessage().getContentRaw().split("%");
                 boolean hasPermission = false;
                 for(Role r: Objects.requireNonNull(event.getMember()).getRoles())
                 {
@@ -33,7 +33,7 @@ public class Creator extends ListenerAdapter {
                         String z = "";
                         EmbedBuilder eb = new EmbedBuilder();
                         if (command.length == 1) {
-                            eb.setTitle("!embed>[c;>a;>t;>n;>z;>u;>U;>s;]");
+                            eb.setTitle("!embed%[c;%a;%t;%n;%z;%u;%U;%s;%o;]");
                             eb.addField("", "c-kolor(ang), np. c;red\n" +
                                     "a-autor, np. a;Jan\n" +
                                     "t-tytuł, np. t;Regulamin\n" +
@@ -41,7 +41,8 @@ public class Creator extends ListenerAdapter {
                                     "z-zawartosc tekstowa\n" +
                                     "u-adres url miniatury\n" +
                                     "U-adres url obrazka\n" +
-                                    "s-stopka, np. s;Made by Jan", false);
+                                    "s-stopka, np. s;Made by Jan\n" +
+                                    "o-opis", false);
                             eb.addField("Jeśli jakaś opcja Cię nie interesuje ,po prostu ją pomiń", "Dostępne kolory:\n" +
                                     "yellow\n" +
                                     "orange\n" +
@@ -103,6 +104,8 @@ public class Creator extends ListenerAdapter {
                                     eb.setImage(subCommand[1]);
                                 } else if (subCommand[0].equals("s")) {
                                     eb.setFooter(subCommand[1]);
+                                } else if (subCommand[0].equals("o")) {
+                                    eb.setDescription(subCommand[1]);
                                 } else if (subCommand[0].equals("n")) {
                                     n = subCommand[1];
                                 } else if (subCommand[0].equals("z")) {
