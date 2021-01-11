@@ -1,1 +1,1 @@
-worker: java -jar EmbedCreator-1.0-jar-with-dependencies.jar Main
+worker: java -jar TheStrangersBot-1.0-jar-with-dependencies.jar Main

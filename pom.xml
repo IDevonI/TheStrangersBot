@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>pl.devon.discord</groupId>
-    <artifactId>EmbedCreator</artifactId>
+    <artifactId>TheStrangersBot</artifactId>
     <version>1.0</version>
     <build>
         <plugins>

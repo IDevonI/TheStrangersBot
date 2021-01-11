@@ -1,4 +1,4 @@
-import events.Creator;
+import commands.EmbedCreator;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.requests.GatewayIntent;
@@ -11,7 +11,7 @@ public class Main {
         String token=System.getenv("TOKEN");
         try {
             jda = JDABuilder.createDefault(token).enableIntents(GatewayIntent.GUILD_PRESENCES).build();
-            jda.addEventListener(new Creator());
+            jda.addEventListener(new EmbedCreator());
         } catch (LoginException e) {
             e.printStackTrace();
         }
