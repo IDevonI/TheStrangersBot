@@ -39,10 +39,11 @@ public class EmbedCreator extends ListenerAdapter {
                         String z = "";
                         EmbedBuilder eb = new EmbedBuilder();
                         if (command.length == 1) {
-                            eb.setTitle("!embed%[c;%a;%t;%n;%z;%u;%U;%s;%o;]");
+                            eb.setTitle("!embed%[c;%a;%t;%T=;%n;%z;%u;%U;%s;%o;]");
                             eb.addField("", "c-kolor(ang), np. c;red\n" +
                                     "a-autor, np. a;Jan\n" +
                                     "t-tytuł, np. t;Regulamin\n" +
+                                    "T-tytul z url, np. T;Tytuł=adres url\n" +
                                     "n-nagłówek, np. n;Punkt pierwszy\n" +
                                     "z-zawartosc tekstowa\n" +
                                     "u-adres url miniatury\n" +
@@ -68,54 +69,83 @@ public class EmbedCreator extends ListenerAdapter {
                                     "Powyższe można łączyć np.:\n" +
                                     "trzy_gwiazdki ***tekst*** trzy_gwiazdki - pogrubiona kursywa\n" +
                                     "dwie_podłogi_gwiazdka __*tekst*__ gwiazdka_dwie_podłogi - podkreślona kursywa", false);
+                            eb.setFooter("Created by Devon");
                         } else {
                             for (int i = 1; i < command.length && err == 0; i++) {
                                 String[] subCommand = command[i].split(";");
-                                if (subCommand[0].equals("c")) {
-                                    if (subCommand[1].equals("yellow")) {
-                                        eb.setColor(Color.YELLOW);
-                                    } else if (subCommand[1].equals("orange")) {
-                                        eb.setColor(Color.ORANGE);
-                                    } else if (subCommand[1].equals("red")) {
-                                        eb.setColor(Color.RED);
-                                    } else if (subCommand[1].equals("blue")) {
-                                        eb.setColor(Color.BLUE);
-                                    } else if (subCommand[1].equals("black")) {
-                                        eb.setColor(Color.BLACK);
-                                    } else if (subCommand[1].equals("white")) {
-                                        eb.setColor(Color.WHITE);
-                                    } else if (subCommand[1].equals("pink")) {
-                                        eb.setColor(Color.PINK);
-                                    } else if (subCommand[1].equals("green")) {
-                                        eb.setColor(Color.GREEN);
-                                    } else if (subCommand[1].equals("magenta")) {
-                                        eb.setColor(Color.MAGENTA);
-                                    } else if (subCommand[1].equals("cyan")) {
-                                        eb.setColor(Color.CYAN);
-                                    } else if (subCommand[1].equals("gray")) {
-                                        eb.setColor(Color.GRAY);
-                                    } else if (subCommand[1].equals("dark_gray")) {
-                                        eb.setColor(Color.DARK_GRAY);
-                                    } else {
-                                        event.getChannel().sendMessage("Error: Nieprawidłowy kolor!").queue();
-                                        err++;
-                                    }
-                                } else if (subCommand[0].equals("a")) {
-                                    eb.setAuthor(subCommand[1]);
-                                } else if (subCommand[0].equals("t")) {
-                                    eb.setTitle(subCommand[1]);
-                                } else if (subCommand[0].equals("u")) {
-                                    eb.setThumbnail(subCommand[1]);
-                                } else if (subCommand[0].equals("U")) {
-                                    eb.setImage(subCommand[1]);
-                                } else if (subCommand[0].equals("s")) {
-                                    eb.setFooter(subCommand[1]);
-                                } else if (subCommand[0].equals("o")) {
-                                    eb.setDescription(subCommand[1]);
-                                } else if (subCommand[0].equals("n")) {
-                                    n = subCommand[1];
-                                } else if (subCommand[0].equals("z")) {
-                                    z = subCommand[1];
+                                switch (subCommand[0]) {
+                                    case "c":
+                                        switch (subCommand[1]) {
+                                            case "yellow":
+                                                eb.setColor(Color.YELLOW);
+                                                break;
+                                            case "orange":
+                                                eb.setColor(Color.ORANGE);
+                                                break;
+                                            case "red":
+                                                eb.setColor(Color.RED);
+                                                break;
+                                            case "blue":
+                                                eb.setColor(Color.BLUE);
+                                                break;
+                                            case "black":
+                                                eb.setColor(Color.BLACK);
+                                                break;
+                                            case "white":
+                                                eb.setColor(Color.WHITE);
+                                                break;
+                                            case "pink":
+                                                eb.setColor(Color.PINK);
+                                                break;
+                                            case "green":
+                                                eb.setColor(Color.GREEN);
+                                                break;
+                                            case "magenta":
+                                                eb.setColor(Color.MAGENTA);
+                                                break;
+                                            case "cyan":
+                                                eb.setColor(Color.CYAN);
+                                                break;
+                                            case "gray":
+                                                eb.setColor(Color.GRAY);
+                                                break;
+                                            case "dark_gray":
+                                                eb.setColor(Color.DARK_GRAY);
+                                                break;
+                                            default:
+                                                event.getChannel().sendMessage("Error: Nieprawidłowy kolor!").queue();
+                                                err++;
+                                                break;
+                                        }
+                                        break;
+                                    case "a":
+                                        eb.setAuthor(subCommand[1]);
+                                        break;
+                                    case "t":
+                                        eb.setTitle(subCommand[1]);
+                                        break;
+                                    case "u":
+                                        eb.setThumbnail(subCommand[1]);
+                                        break;
+                                    case "U":
+                                        eb.setImage(subCommand[1]);
+                                        break;
+                                    case "s":
+                                        eb.setFooter(subCommand[1]);
+                                        break;
+                                    case "o":
+                                        eb.setDescription(subCommand[1]);
+                                        break;
+                                    case "n":
+                                        n = subCommand[1];
+                                        break;
+                                    case "z":
+                                        z = subCommand[1];
+                                        break;
+                                    case "T":
+                                        String[] subT = subCommand[1].split("=");
+                                        eb.setTitle(subT[0], subT[1]);
+                                        break;
                                 }
                             }
                         }
